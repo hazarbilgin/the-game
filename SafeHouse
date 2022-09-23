@@ -17,5 +17,7 @@ public class SafeHouse extends Player {
             System.out.println("öldünüz ...");
             System.exit(0);
         }
+
+
     }
 }
