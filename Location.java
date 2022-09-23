@@ -1,4 +1,6 @@
 import java.util.Scanner;
+
+import java.util.Random;
 public class Location {
     int zdamage = 5;
     private int zHealth = 15;
