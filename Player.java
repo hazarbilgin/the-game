@@ -115,5 +115,7 @@ public class Player {
     public static int getRhealty() {
         return rhealty;
     }
-}
 
+
+
+}
