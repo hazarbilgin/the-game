@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class Main {
+
+    public static void main(String[] args) {
+                new Scanner(System.in);
+                Game game = new Game();
+                Player player = new Player();
+                Location location= new Location(player);
+                game.login();
+                player.chaMenu();
+                player.selectCha();
+                location.start();
+                location.getMenu();
+
+            }
+        }
