@@ -1,0 +1,12 @@
+public class SafeHouse extends Player {
+    public boolean getLocation(){
+        return true;
+    }
+    Player player=new Player();
+    public void Healths(){
+        rHealth();
+        System.out.println("caniniz fullendi caniniz: "+ rhealty);
+        Location location;
+
+    }
+}
