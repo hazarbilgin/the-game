@@ -11,6 +11,6 @@ public class Main {
                 player.selectCha();
                 location.start();
                 location.getMenu();
+
             }
         }
-
