@@ -1,10 +1,13 @@
 import java.util.Scanner;
 public class Location {
-    NormalLoc normalLoc;
+    int zdamage = 5;
+    private int zHealth = 15;
+
     SafeHouse safeHouse = new SafeHouse();
     Inventory inventory = new Inventory();
     private Player player;
     protected String name;
+    private  int ahealth=21;
     protected int _selloc;
 
     Location(Player player) {
@@ -23,10 +26,10 @@ public class Location {
 
     public void start() {
         System.out.println("select where you want to go");
-        System.out.println("1. güvenli ev");
-        System.out.println("2. Mağara belki karşınıza zombi çıkabilir ");
-        System.out.println("3. orman belki karşınıza vampir çıkabilir");
-        System.out.println("4. nehir belki karşınıza ayı çıkabilir");
+        System.out.println("1. güvenli ev 3 altın karşılı canınız fullenir");
+        System.out.println("2. Mağara belki karşınıza zombi(hasar: 5 para: +6 can: 15) çıkabilir ");
+        System.out.println("3. orman belki karşınıza vampir(hasar: 7 para: +8 can: 17) çıkabilir");
+        System.out.println("4. nehir belki karşınıza ayı   (hasar: 9 para: +10 can: 21) çıkabilir");
         System.out.println("5. mağazaya gidip zırh/silah geliştirmesi alabilirsiniz...");
         while (_selloc < 0 || _selloc > 5) {
             System.out.println("yanlis sayi girdiniz gecerli bir lokasyon seciniz");
@@ -34,51 +37,69 @@ public class Location {
         }
     }
     public void zombie() {
-        int zdamage = 5;
-        int zHealth = 15;
 
         if (player.healty > zdamage) {
             while (player.healty > zdamage) {
-                player.setHealty(player.healty - zdamage);
-                System.out.println("karakterin yeni cani: " + player.healty);
+                if(zHealth>-3){
+                    player.setHealty(player.healty - zdamage);
+                    setzHealth(zHealth-player.getDamage());
+                    System.out.println("zombinin cani:"+zHealth);
+                    System.out.println("karakterin kalan cani: " + player.healty);
 
+                }
             }
             System.out.println("tebrikler kazandiniz...");
+            player.setMoney(player.getMoney()+6);
+            System.out.println("yeni paraniz: "+player.getMoney());
         } else {
             System.out.println("öldünüz ...");
-
+            System.exit(0);
         }
         System.out.println("gitmek istediginiz yeni yeri seçiniz ...");
         getMenu();
     }
-
     public void vampir() {
         int vdamage = 7;
         int vHealth = 17;
         if (player.healty > vdamage) {
             while (player.healty > vdamage) {
-                player.setHealty(player.healty - vdamage);
-                System.out.println("karakterin yeni cani: " + player.healty);
+                if(zHealth>-3){
+                    player.setHealty(player.healty - vdamage);
+                    setzHealth(zHealth-player.getDamage());
+                    System.out.println("vampirin kalan cani:"+zHealth);
+                    System.out.println("karakterin kalan cani: " + player.healty);
+
+                }
             }
+            System.out.println("tebrikler kazandiniz...");
+            player.setMoney(player.getMoney()+8);
+            System.out.println("yeni paraniz: "+player.getMoney());
         } else {
             System.out.println("öldünüz ...");
+            System.exit(0);
         }
         System.out.println("gitmek istediginiz yeni yeri seçiniz ...");
         getMenu();
     }
-
     public void ayı() {
         int adamage = 9;
-        int aHealth = 21;
+
         if (player.healty > adamage) {
             while (player.healty > adamage) {
-                player.setHealty(player.healty - adamage);
-                System.out.println("karakterin yeni cani: " + player.healty);
+                if(getAhealth()>-5){
+                    player.setHealty(player.healty - adamage);
+                   setAhealth(getAhealth()-player.getDamage());
+                    System.out.println("ayının kalan cani: "+getAhealth());
+                    System.out.println("karakterin kalan  cani: " + player.healty);
+
+                }
             }
-        }
-        else
-            {
+            System.out.println("tebrikler kazandiniz...");
+            player.setMoney(player.getMoney()+10);
+            System.out.println("yeni paraniz: "+player.getMoney());
+        } else {
                 System.out.println("öldünüz ...");
+                System.exit(0);
             }
             System.out.println("gitmek istediginiz yeni yeri seçiniz ...");
             getMenu();
@@ -108,7 +129,12 @@ public class Location {
                 inventory.silahlar();
                 break;
            default:
-               System.out.println("yanlis değer girdiniz");
+               while (_selloc<0 || _selloc>5){
+                   System.out.println("yanlis değer girdiniz");
+                   Location location=new Location(player);
+                   location.getMenu();
+               }
+
     break;
       }
         return _selloc;
@@ -118,54 +144,7 @@ public class Location {
     private  String bear;
     private String monster;
     private String zombie;
-    public String getCave() {
-        return cave;
-    }
 
-    public void setCave(String cave) {
-        this.cave = cave;
-    }
-
-    public String getBost() {
-        return bost;
-    }
-
-    public void setBost(String bost) {
-        this.bost = bost;
-    }
-
-    public String getBear() {
-        return bear;
-    }
-
-    public void setBear(String bear) {
-        this.bear = bear;
-    }
-
-    public String getMonster() {
-        return monster;
-    }
-
-    public void setMonster(String monster) {
-        this.monster = monster;
-    }
-
-    public String getZombie() {
-        return zombie;
-    }
-
-    public void setZombie(String zombie) {
-
-        this.zombie = zombie;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getSelloc() {
         return _selloc;
@@ -173,5 +152,21 @@ public class Location {
 
     public void setSelloc(int selloc) {
         this._selloc = selloc;
+    }
+
+    public int getzHealth() {
+        return zHealth;
+    }
+
+    public void setzHealth(int zHealth) {
+        this.zHealth = zHealth;
+    }
+
+    public int getAhealth() {
+        return ahealth;
+    }
+
+    public void setAhealth(int ahealth) {
+        this.ahealth = ahealth;
     }
 }
