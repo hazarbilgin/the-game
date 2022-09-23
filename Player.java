@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class Player {
     Game game=new Game();
+
     Scanner scan = new Scanner(System.in);
     private String Name;
     private String cName;
@@ -114,7 +115,5 @@ public class Player {
     public static int getRhealty() {
         return rhealty;
     }
-
-
-
 }
+
