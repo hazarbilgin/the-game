@@ -4,9 +4,18 @@ public class SafeHouse extends Player {
     }
     Player player=new Player();
     public void Healths(){
-        rHealth();
-        System.out.println("caniniz fullendi caniniz: "+ rhealty);
-        Location location;
-
+        if(healty>0){
+            rHealth();
+            System.out.println("caniniz fullendi caniniz: "+ rhealty);
+            player.setMoney(money-3);
+            System.out.println("kalan paranız: "+money);
+            Location location=new Location(player);
+            System.out.println("gitmek istediginiz yeri seçiniz");
+            location.getMenu();
+        }
+        else{
+            System.out.println("öldünüz ...");
+            System.exit(0);
+        }
     }
 }
