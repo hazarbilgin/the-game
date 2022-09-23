@@ -2,12 +2,15 @@ import java.util.Scanner;
 public class Inventory extends Player
 {
     int select;
+
     private int tdamage;
     private int kmoney;
     private int kdamage;
     private int pdamage;
     private int pmoney;
     Player player=new Player();
+
+
     Scanner scan = new Scanner(System.in);
     public  void silahlar(){
         System.out.println("tool store'a hoşgeldiniz...");
@@ -20,7 +23,6 @@ public class Inventory extends Player
         {
             case 1:
                 int tmoney=12;
-                System.out.println(player.money);
                 //BAŞKA BİR CLASSTAN VERİ ALMAK İÇİN STATİC YAZ HAFIZADA TUTUYOR
                 if(money >= tmoney)
                 {
@@ -28,9 +30,17 @@ public class Inventory extends Player
                     setDamage(7);
                     System.out.println("yeni hasarınız: "+player.getDamage());
                     System.out.println("kalan paraniz: "+money);
+                    System.out.println("gitmek istediğiniz yeni yeri seçiniz...");
+                    Location location=new Location(player);
+                    location.getMenu();
+
                 }
                 else {
                     System.out.println("yetersiz bakiye");
+                    System.out.println("gitmek istediğiniz yeni yeri seçiniz...");
+                    Location location=new Location(player);
+                    location.getMenu();
+
                 }
                 break;
             case 2:
@@ -41,9 +51,15 @@ public class Inventory extends Player
                     setDamage(9);
                     System.out.println("yeni hasarınız: "+player.getDamage());
                     System.out.println("kalan paraniz: "+money);
+                    System.out.println("gitmek istediğiniz yeni yeri seçiniz...");
+                    Location location=new Location(player);
+                    location.getMenu();
                 }
                 else {
                     System.out.println("yetersiz bakiye");
+                    System.out.println("gitmek istediğiniz yeni yeri seçiniz...");
+                    Location location=new Location(player);
+                    location.getMenu();
                 }
                 break;
             case 3:
@@ -53,15 +69,23 @@ public class Inventory extends Player
                     setMoney( money-pmoney);
                     setDamage(11);
                     System.out.println("yeni hasarınız: "+player.getDamage());
-                    System.out.println("kalanparaniz: "+money);
+                    System.out.println("kalan paraniz: "+money);
+                    System.out.println("gitmek istediğiniz yeni yeri seçiniz...");
+                    Location location=new Location(player);
+                    location.getMenu();
                 }
                 else {
                     System.out.println("yetersiz bakiye");
+                    System.out.println("gitmek istediğiniz yeni yeri seçiniz...");
+                    Location location=new Location(player);
+                    location.getMenu();
                 }
                 break;
             default:
-                System.out.println("lütfen geçerli bi silah seçiniz");
-                    //buraya while döngüsü girilcek
+                    System.out.println("lütfen geçerli bi silah seçiniz");
+                System.out.println("gitmek istediğiniz yeni yeri seçiniz...");
+                Location location=new Location(player);
+                location.getMenu();
                 break;
         }
     }
